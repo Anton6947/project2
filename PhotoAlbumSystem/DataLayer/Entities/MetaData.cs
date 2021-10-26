@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    class MetaData
+    public class MetaData
     {
+        public 
     }
 }
