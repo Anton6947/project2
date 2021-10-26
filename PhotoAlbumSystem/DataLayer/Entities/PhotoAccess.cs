@@ -17,7 +17,7 @@ namespace DataLayer.Entities
         public DateTime Date { get; set; }
 
         [ForeignKey(nameof(IdentityUser))]
-        public Guid User_Id { get; set; }
+        public string User_Id { get; set; }
 
         public IdentityUser IdentityUser { get; set; }
 

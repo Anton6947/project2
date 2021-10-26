@@ -23,7 +23,7 @@ namespace DataLayer.Entities
         
 
         [ForeignKey(nameof(CapturedByUser))]
-        public Guid CapturedByUser_Id { get; set; }
+        public string CapturedByUser_Id { get; set; }
 
         public IdentityUser CapturedByUser { get; set; }
 
