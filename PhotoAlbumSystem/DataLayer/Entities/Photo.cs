@@ -10,6 +10,7 @@ namespace DataLayer.Entities
 {
     public class Photo
     {
+        [Key]
         public Guid Photo_Id { get; set; }
         
         public string FileName { get; set; }
