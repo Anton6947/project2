@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,10 @@ namespace DataLayer.Entities
 {
     public class AccessType
     {
+        [Key]
         public Guid AccessType_Id { get; set; }
 
-        public String Name { get; set; }
+        public string Name { get; set; }
 
 
 
