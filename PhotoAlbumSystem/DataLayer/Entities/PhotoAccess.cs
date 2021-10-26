@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,7 +16,10 @@ namespace DataLayer.Entities
 
         public DateTime Date { get; set; }
 
-        //EntityID Framework for userid
+        [ForeignKey(nameof(IdentityUser))]
+        public Guid User_Id { get; set; }
+
+        public IdentityUser IdentityUser { get; set; }
 
         [ForeignKey(nameof(Photo))]
         public Guid Photo_Id { get; set; }
