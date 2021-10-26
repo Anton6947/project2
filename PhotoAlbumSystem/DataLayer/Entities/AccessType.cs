@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    class AccessType
+    public class AccessType
     {
+        public Guid AccessType_Id { get; set; }
+
+        public String Name { get; set; }
+
+
+
     }
 }

@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    class Album
+    public class Album 
     {
+        public Guid Album_Id { get; set; }
+
+        public string AlbumName { get; set; }
+
+
     }
 }
