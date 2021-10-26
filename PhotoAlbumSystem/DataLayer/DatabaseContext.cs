@@ -10,6 +10,8 @@ namespace DataLayer
 {
     public class DatabaseContext : IdentityDbContext
     {
+
+
         public virtual DbSet<Album> Albums { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<MetaData> MetaDatas { get; set; }
@@ -25,5 +27,8 @@ namespace DataLayer
         {
             base.OnModelCreating(builder);
         }
+
+
+
     }
 }

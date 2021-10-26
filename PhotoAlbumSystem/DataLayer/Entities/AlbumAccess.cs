@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,9 +18,13 @@ namespace DataLayer.Entities
         public DateTime Date { get; set; }
 
 
-        //Unsure about user
         
+
+        [ForeignKey(nameof(IdentityUser))]
+
         public Guid User_Id { get; set; }
+
+        public IdentityUser IdentityUser { get; set; }
 
 
         [ForeignKey(nameof(Album))]
