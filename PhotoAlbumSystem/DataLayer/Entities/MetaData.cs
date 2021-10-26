@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,7 +20,12 @@ namespace DataLayer.Entities
         public string GeoLocation { get; set; }
         public string Tags { get; set; }
         public DateTime CapturedDate { get; set; }
-        public string CapturedBy { get; set; }
+        
+
+        [ForeignKey(nameof(CapturedByUser))]
+        public Guid CapturedByUser_Id { get; set; }
+
+        public IdentityUser CapturedByUser { get; set; }
 
     }
 }
