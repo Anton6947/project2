@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Interfaces
 {
-    class Update
+    public class Update
     {
     }
 }
