@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Implementations
 {
-    class Class1
+    class UpdateImpl
     {
     }
 }
