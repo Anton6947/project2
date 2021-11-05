@@ -16,6 +16,17 @@ namespace DataLayer
         public virtual DbSet<Album> Albums { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<MetaData> MetaDatas { get; set; }
+
+        public void Remove(object firstOrDefault)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object FirstOrDefault(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual DbSet<AccessType> AcessTypes { get; set; }
         public virtual DbSet<AlbumAccess> AlbumAccessors { get; set; }
         public virtual DbSet<PhotoAccess> PhotoAccessors { get; set; }
