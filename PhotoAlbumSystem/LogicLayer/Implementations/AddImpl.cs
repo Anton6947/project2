@@ -27,5 +27,16 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
             return photo;
         }
+        public Album AddAlbum(Guid Album_Id,string AlbumName )
+        {
+            var album = new Album()
+            {
+                Album_Id = Guid.NewGuid(),
+                AlbumName = AlbumName
+            };
+            ourDatabase.Add(album);
+            ourDatabase.SaveChanges();
+            return album;
+        }
     }
 }
