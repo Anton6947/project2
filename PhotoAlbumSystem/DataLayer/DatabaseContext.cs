@@ -28,6 +28,12 @@ namespace DataLayer
         }
 
         public virtual DbSet<AccessType> AcessTypes { get; set; }
+
+        public object AsNoTracking()
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual DbSet<AlbumAccess> AlbumAccessors { get; set; }
         public virtual DbSet<PhotoAccess> PhotoAccessors { get; set; }
 

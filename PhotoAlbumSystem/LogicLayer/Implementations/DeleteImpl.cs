@@ -23,7 +23,7 @@ namespace LogicLayer.Implementations
 
             var photo = new Photo()
             {
-                Photo_Id = Guid.NewGuid(),
+                Photo_Id = Photo_Id,
                 FileName = FileName,
                 Album_Id = Album_Id
             };
@@ -37,7 +37,7 @@ namespace LogicLayer.Implementations
 
             var album = new Album()
             {
-                Album_Id = Guid.NewGuid(),
+                Album_Id = Album_Id,
                 AlbumName = AlbumName,
                 
             };
