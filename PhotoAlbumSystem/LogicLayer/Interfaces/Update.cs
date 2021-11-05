@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Interfaces
 {
-    public class Update
+    public interface Update
     {
+        Photo UpdatePhoto(Guid Photo_Id, string FileName, Guid Album_Id);
+        Album UpdateAlbum(Guid Album_Id, string AlbumName);
     }
 }
