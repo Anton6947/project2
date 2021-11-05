@@ -32,8 +32,21 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
         }
 
-    
-     
+        public void DeleteAlbum(Guid Album_Id, string AlbumName)
+        {
+
+            var album = new Album()
+            {
+                Album_Id = Guid.NewGuid(),
+                AlbumName = AlbumName,
+                
+            };
+
+            ourDatabase.Remove(ourDatabase.Albums.FirstOrDefault(x => x.Album_Id == album.Album_Id));
+            ourDatabase.SaveChanges();
+        }
+
+
 
 
 
