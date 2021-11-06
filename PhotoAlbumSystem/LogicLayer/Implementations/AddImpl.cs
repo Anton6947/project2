@@ -36,7 +36,7 @@ namespace LogicLayer.Implementations
             };
             ourDatabase.Add(album);
             ourDatabase.SaveChanges();
-            return album;
+            return album;  //test comment
         }
     }
 }
