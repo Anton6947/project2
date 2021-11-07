@@ -17,6 +17,11 @@ namespace DataLayer
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<MetaData> MetaDatas { get; set; }
 
+        public virtual DbSet<AlbumAccess> AlbumAccessors { get; set; }
+        public virtual DbSet<PhotoAccess> PhotoAccessors { get; set; }
+        public virtual DbSet<AccessType> AcessTypes { get; set; }
+
+
         public void Remove(object firstOrDefault)
         {
             throw new NotImplementedException();
@@ -26,19 +31,13 @@ namespace DataLayer
         {
             throw new NotImplementedException();
         }
-
-        public virtual DbSet<AccessType> AcessTypes { get; set; }
-
         public object AsNoTracking()
         {
             throw new NotImplementedException();
         }
-
-        public virtual DbSet<AlbumAccess> AlbumAccessors { get; set; }
-        public virtual DbSet<PhotoAccess> PhotoAccessors { get; set; }
-
         public DatabaseContext(DbContextOptions options) : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
