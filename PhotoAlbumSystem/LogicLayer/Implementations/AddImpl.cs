@@ -15,6 +15,20 @@ namespace LogicLayer.Implementations
         {
             ourDatabase = db;
         }
+        public MetaData AddMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id)
+        {
+            var metaData = new MetaData()
+            {
+                Photo_Id = Guid.NewGuid(),
+                GeoLocation = GeoLocation,
+                Tags = Tags,
+                CapturedDate = CapturedDate,
+                CapturedByUser_Id = CapturedByUser_Id
+            };
+            ourDatabase.Add(metaData);
+            ourDatabase.SaveChanges();
+            return metaData;
+        }
         public Photo AddPhoto(string FileName, Guid Album_Id)
         {
             var photo = new Photo()
@@ -40,7 +54,7 @@ namespace LogicLayer.Implementations
         }
         public PhotoAccess AddPhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id)
         {
-            var photoaccess = new PhotoAccess()
+            var photoAccess = new PhotoAccess()
             {
                 PhotoAccess_Id = Guid.NewGuid(),
                 Date = Date,
@@ -48,9 +62,24 @@ namespace LogicLayer.Implementations
                 Photo_Id = Photo_Id,
                 AccessType_Id = AccessType_Id
             };
-            ourDatabase.Add(photoaccess);
+            ourDatabase.Add(photoAccess);
             ourDatabase.SaveChanges();
-            return photoaccess;
+            return photoAccess;
         }
-    }
+
+        public AlbumAccess AddAlbumAccess(Guid AlbumAccess_Id, DateTime Date, string User_Id, Guid Album_Id, Guid AccessType_Id)
+        {
+            var albumAccess = new AlbumAccess()
+            {
+                AlbumAccess_Id = Guid.NewGuid(),
+                Date = Date,
+                User_Id = User_Id,
+                Album_Id = Album_Id,
+                AccessType_Id = AccessType_Id
+            };
+            ourDatabase.Add(albumAccess);
+            ourDatabase.SaveChanges();
+            return albumAccess;
+
+        }
 }
