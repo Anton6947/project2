@@ -13,5 +13,6 @@ namespace LogicLayer.Interfaces
 
         Album SearchAlbum(Guid Album_Id, string AlbumName);
 
+        MetaData SearchMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id);
     }
 }

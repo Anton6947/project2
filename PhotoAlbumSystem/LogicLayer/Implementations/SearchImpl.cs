@@ -18,6 +18,25 @@ namespace LogicLayer.Implementations
             ourDataBase = db;
         }
 
+        public void SearchMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id)
+        {
+
+            var metaData = new MetaData()
+            {
+                Photo_Id = Photo_Id,
+                GeoLocation = GeoLocation,
+                CapturedDate = CapturedDate,
+                CapturedByUser_Id = CapturedByUser_Id
+            };
+
+            var list = ourDataBase.MetaDatas.AsNoTracking().ToList();
+            var entity = ourDataBase.MetaDatas.AsNoTracking().FirstOrDefault(x => x.CapturedByUser_Id == metaData.CapturedByUser_Id);
+            
+            
+
+            
+        }
+
         public void SearchPhoto(Guid Photo_Id, string FileName, Guid Album_Id)
         {
             var photo = new Photo()
