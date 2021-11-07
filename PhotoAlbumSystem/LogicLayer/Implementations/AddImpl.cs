@@ -36,7 +36,7 @@ namespace LogicLayer.Implementations
             };
             ourDatabase.Add(album);
             ourDatabase.SaveChanges();
-            return album;  //test comment
+            return album;  
         }
         public PhotoAccess AddPhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id)
         {

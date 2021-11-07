@@ -46,7 +46,41 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
         }
 
+        public void DeletePhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id)
+        {
 
+            var photoAccess = new PhotoAccess()
+            {
+                PhotoAccess_Id = PhotoAccess_Id,
+                Date = Date,
+                User_Id = User_Id,
+                Photo_Id = Photo_Id,
+                AccessType_Id = AccessType_Id,
+
+
+            };
+
+            ourDatabase.Remove(ourDatabase.PhotoAccessors.FirstOrDefault(x => x.User_Id == photoAccess.User_Id));
+            ourDatabase.SaveChanges();
+        }
+
+        public void DeleteAlbumAccess(Guid AlbumAccess_Id,DateTime Date,string User_Id, Guid Album_Id, Guid AccessType_Id)
+        {
+
+            var albumAccess = new AlbumAccess()
+            {
+                AlbumAccess_Id = AlbumAccess_Id,
+                Date = Date,
+                User_Id = User_Id,
+                Album_Id = Album_Id,
+                AccessType_Id = AccessType_Id,
+
+
+            };
+
+            ourDatabase.Remove(ourDatabase.AlbumAccessors.FirstOrDefault(x => x.User_Id == albumAccess.User_Id));
+            ourDatabase.SaveChanges();
+        }
 
 
 
