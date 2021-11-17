@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataLayer.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhotoAlbumSystem.Models;
 using System;
@@ -28,6 +29,15 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
 
+        public IActionResult Album()
+        {
+            var album = new Album()
+            {
+                Album_Id = Guid.NewGuid(),
+                AlbumName = "Test"
+            };
+            return View(album);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
