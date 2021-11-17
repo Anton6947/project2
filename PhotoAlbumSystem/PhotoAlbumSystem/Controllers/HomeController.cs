@@ -31,12 +31,8 @@ namespace PhotoAlbumSystem.Controllers
 
         public IActionResult Album()
         {
-            var album = new Album()
-            {
-                Album_Id = Guid.NewGuid(),
-                AlbumName = "Test"
-            };
-            return View(album);
+            
+            return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

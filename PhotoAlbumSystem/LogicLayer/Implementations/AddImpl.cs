@@ -11,7 +11,7 @@ namespace LogicLayer.Implementations
     public class AddImpl
     {
         private readonly DatabaseContext ourDatabase;
-        public AddImpl(DatabaseContext db) 
+        public AddImpl(DatabaseContext db)
         {
             ourDatabase = db;
         }
@@ -41,7 +41,7 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
             return photo;
         }
-        public Album AddAlbum(Guid Album_Id,string AlbumName )
+        public Album AddAlbum(Guid Album_Id, string AlbumName)
         {
             var album = new Album()
             {
@@ -50,7 +50,7 @@ namespace LogicLayer.Implementations
             };
             ourDatabase.Add(album);
             ourDatabase.SaveChanges();
-            return album;  
+            return album;
         }
         public PhotoAccess AddPhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id)
         {
@@ -82,4 +82,5 @@ namespace LogicLayer.Implementations
             return albumAccess;
 
         }
+    }
 }
