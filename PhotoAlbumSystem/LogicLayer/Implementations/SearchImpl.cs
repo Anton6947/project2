@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using LogicLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Implementations
 {
-    public class SearchImpl
+    public class SearchImpl : Search
     {
         private readonly DatabaseContext ourDataBase;
 

@@ -1,4 +1,6 @@
 using DataLayer;
+using LogicLayer.Implementations;
+using LogicLayer.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,6 +44,11 @@ namespace PhotoAlbumSystem
             }
             )
         .AddEntityFrameworkStores<DatabaseContext>();
+
+            services.AddScoped<Add, AddImpl>();
+            services.AddScoped<Delete, DeleteImpl>();
+            services.AddScoped<Search, SearchImpl>();
+            services.AddScoped<Update, UpdateImpl>();
 
         }
 

@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Implementations
 {
-    public class DeleteImpl
+    public class DeleteImpl : Delete
     {
 
         private readonly DatabaseContext ourDatabase;

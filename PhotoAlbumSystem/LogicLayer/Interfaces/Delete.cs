@@ -9,15 +9,15 @@ namespace LogicLayer.Interfaces
 {
     public interface Delete
     {        
-        MetaData DeleteMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id);
+        void DeleteMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id);
 
-        Photo DeletePhoto(Guid Photo_Id, string FileName, Guid Album_Id);
+        void DeletePhoto(Guid Photo_Id, string FileName, Guid Album_Id);
 
-        Album DeleteAlbum(Guid Album_Id, string AlbumName);
+        void DeleteAlbum(Guid Album_Id, string AlbumName);
 
-        AlbumAccess DeleteAlbumAccess(Guid AlbumAccess_Id, DateTime Date, string User_Id, Guid Album_Id, Guid AccessType_Id);
+        void DeleteAlbumAccess(Guid AlbumAccess_Id, DateTime Date, string User_Id, Guid Album_Id, Guid AccessType_Id);
 
-        PhotoAccess DeletePhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id);
+        void DeletePhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id);
 
     }
 }

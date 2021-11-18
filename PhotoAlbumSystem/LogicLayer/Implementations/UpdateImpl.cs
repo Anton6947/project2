@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Implementations
 {
-    public class UpdateImpl
+    public class UpdateImpl : Update
     {
         private readonly DatabaseContext ourDatabase;
 
