@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities;
+using LogicLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhotoAlbumSystem.Models;
@@ -13,10 +14,12 @@ namespace PhotoAlbumSystem.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly Add _addServices;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger , Add addServices )
         {
             _logger = logger;
+            _addServices = addServices;
         }
 
         public IActionResult Index()
@@ -29,9 +32,16 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
 
-        public IActionResult Album()
+        public IActionResult Album(AlbumView album)
         {
-            
+
+            var albumInput = new Album()
+            {
+                Album_Id = Guid.NewGuid(),
+                AlbumName = album.AlbumName
+            };
+            bool response = _addServices.AddAlbum(albumInput.Album_Id, albumInput.AlbumName);
+
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

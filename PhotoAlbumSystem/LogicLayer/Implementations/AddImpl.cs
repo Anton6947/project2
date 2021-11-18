@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
+using LogicLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Implementations
 {
-    public class AddImpl
+    public class AddImpl : Add
     {
         private readonly DatabaseContext ourDatabase;
         public AddImpl(DatabaseContext db)
@@ -41,7 +42,7 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
             return photo;
         }
-        public Album AddAlbum(Guid Album_Id, string AlbumName)
+        public bool AddAlbum(Guid Album_Id, string AlbumName)
         {
             var album = new Album()
             {
@@ -50,7 +51,7 @@ namespace LogicLayer.Implementations
             };
             ourDatabase.Add(album);
             ourDatabase.SaveChanges();
-            return album;
+            return true;
         }
         public PhotoAccess AddPhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id)
         {
