@@ -1,30 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Album Page";//Test
 }
-@model DataLayer.Entities.Album
+@model IEnumerable<DataLayer.Entities.Album>
 
-<h4>Album</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Album">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="AlbumName" class="control-label"></label>
-                <input asp-for="AlbumName" class="form-control" />
-                <span asp-validation-for="AlbumName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<p>
+    <a asp-action="AlbumCreate">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AlbumName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AlbumName)
+                </td>
+                <td>
+                    <a asp-action="AlbumEdit" asp-route-id="@item.Album_Id">Edit</a> |
+                    <a asp-action="AlbumDelete" asp-route-id="@item.Album_Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

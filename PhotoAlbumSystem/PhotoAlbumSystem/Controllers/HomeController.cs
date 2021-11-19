@@ -15,11 +15,14 @@ namespace PhotoAlbumSystem.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly Add _addServices;
+        private readonly Search _searchServices;
 
-        public HomeController(ILogger<HomeController> logger , Add addServices )
+
+        public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices)
         {
             _logger = logger;
             _addServices = addServices;
+            _searchServices = searchServices;
         }
 
         public IActionResult Index()
@@ -32,7 +35,12 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
 
-        public IActionResult Album(AlbumView album)
+        public IActionResult Album(Album album)
+        {
+            var albums =_searchServices.GetAlbums();
+            return View(albums);
+        }
+        public IActionResult AlbumCreate(AlbumView album)
         {
 
             var albumInput = new Album()
@@ -40,7 +48,10 @@ namespace PhotoAlbumSystem.Controllers
                 Album_Id = Guid.NewGuid(),
                 AlbumName = album.AlbumName
             };
-            bool response = _addServices.AddAlbum(albumInput.Album_Id, albumInput.AlbumName);
+            if (album.AlbumName != null)
+            {
+                bool response = _addServices.AddAlbum(albumInput.Album_Id, albumInput.AlbumName);
+            }
 
             return View();
         }

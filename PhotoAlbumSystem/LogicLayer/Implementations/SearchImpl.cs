@@ -65,6 +65,7 @@ namespace LogicLayer.Implementations
             var entity = ourDataBase.Albums.AsNoTracking().FirstOrDefault(x => x.AlbumName == album.AlbumName);
 
         }
+        
 
     }
 }
