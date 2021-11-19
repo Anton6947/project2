@@ -10,5 +10,7 @@ namespace PhotoAlbumSystem.Models
     {
         public IFormFile FileName { get; set; }
 
+        public Guid? Album_Id { get; set; }
+
     }
 }

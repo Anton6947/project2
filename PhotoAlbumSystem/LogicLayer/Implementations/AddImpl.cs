@@ -30,7 +30,7 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
             return metaData;
         }
-        public Photo AddPhoto(string FileName, Guid Album_Id)
+        public bool AddPhoto(string FileName, Guid? Album_Id)
         {
             var photo = new Photo()
             {
@@ -40,7 +40,7 @@ namespace LogicLayer.Implementations
             };
             ourDatabase.Add(photo);
             ourDatabase.SaveChanges();
-            return photo;
+            return true;
         }
         public bool AddAlbum(Guid Album_Id, string AlbumName)
         {

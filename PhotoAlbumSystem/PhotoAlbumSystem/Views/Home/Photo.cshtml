@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DataLayer.Entities.Photo>
+
+<p>
+    <a asp-action="PhotoCreate">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Album)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Album.Album_Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Photo_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Photo_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Photo_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

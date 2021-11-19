@@ -42,8 +42,35 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
 
-        
 
+
+        public IActionResult Photo(Photo photo)
+        {
+            var photos = _getAllServices.GetPhotos();
+            return View(photos);
+        }
+        public IActionResult PhotoCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult PhotoCreate(PhotoView photo)
+        {
+
+            var photoInput = new Photo()
+            {
+                Photo_Id = Guid.NewGuid(),
+                FileName = photo.FileName.ToString(),
+                Album_Id = photo.Album_Id
+            };
+
+            if (photo.FileName != null)
+            {
+                bool response = _addServices.AddPhoto(photoInput.FileName, photoInput.Album_Id);
+            }
+
+            return RedirectToAction("Photo");
+        }
 
         public IActionResult Album(Album album)
         {
