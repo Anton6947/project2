@@ -74,6 +74,22 @@ namespace PhotoAlbumSystem.Controllers
 
             return RedirectToAction("Photo");
         }
+       
+
+        public IActionResult PhotoDelete(Photo photo)
+        {
+            var photoInput = new Photo()
+            {
+                Photo_Id = photo.Photo_Id,
+                FileName = photo.FileName,
+                Album_Id = photo.Album_Id
+            };
+            if (photo.FileName != null)
+            {
+                _deleteServices.DeletePhoto(photoInput.Photo_Id, photoInput.FileName, photoInput.Album_Id);
+            }
+            return View();
+        }
 
 
         //       Album Get All
