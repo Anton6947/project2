@@ -44,7 +44,7 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
             return photo;
         }
-        public Album UpdateAlbum(Guid Album_Id, string AlbumName)
+        public bool UpdateAlbum(Guid Album_Id, string AlbumName)
         {
             var album = new Album()
             {          
@@ -53,7 +53,7 @@ namespace LogicLayer.Implementations
             };
             ourDatabase.Update(album);
             ourDatabase.SaveChanges();
-            return album;
+            return true;
         }
 
         public PhotoAccess UpdatePhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id)

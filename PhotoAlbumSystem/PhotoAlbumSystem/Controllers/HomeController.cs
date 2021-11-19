@@ -42,6 +42,15 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
 
+        
+
+
+        public IActionResult Album(Album album)
+        {
+            var albums = _getAllServices.GetAlbums();
+            return View(albums);
+        }
+
         public IActionResult AlbumDelete(AlbumView album)
         {
 
@@ -56,15 +65,25 @@ namespace PhotoAlbumSystem.Controllers
             }
             return View();
         }
-
-
-        public IActionResult Album(Album album)
+        public IActionResult AlbumUpdate(Guid id)
         {
-            var albums = _getAllServices.GetAlbums();
-            return View(albums);
+
+            var albumInput = _getAllServices.GetAlbums().Where(x => x.Album_Id == id).FirstOrDefault();
+
+
+            return View(albumInput);
         }
+        [HttpPost]
+        public IActionResult AlbumUpdate(Album albumInput)
+        {
+            if (albumInput.AlbumName != null)
+            {
+                bool response = _updateServices.UpdateAlbum(albumInput.Album_Id, albumInput.AlbumName);
+            }
 
 
+            return RedirectToAction("Album");
+        }
 
         public IActionResult AlbumCreate(AlbumView album)
         {
@@ -74,6 +93,7 @@ namespace PhotoAlbumSystem.Controllers
                 Album_Id = Guid.NewGuid(),
                 AlbumName = album.AlbumName
             };
+
             if (album.AlbumName != null )
             {
                 bool response = _addServices.AddAlbum(albumInput.Album_Id, albumInput.AlbumName);
