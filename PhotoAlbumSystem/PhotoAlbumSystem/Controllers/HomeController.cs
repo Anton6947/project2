@@ -18,15 +18,17 @@ namespace PhotoAlbumSystem.Controllers
         private readonly Search _searchServices;
         private readonly Update _updateServices;
         private readonly GetAll _getAllServices;
+        private readonly Delete _deleteServices;
 
 
-        public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices, Update updateServices, GetAll getAllServices)
+        public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices, Update updateServices, GetAll getAllServices, Delete deleteServices)
         {
             _logger = logger;
             _addServices = addServices;
             _searchServices = searchServices;
             _updateServices = updateServices;
             _getAllServices = getAllServices;
+            _deleteServices = deleteServices;
 
         }
 
@@ -40,12 +42,7 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
 
-        public IActionResult Album(Album album)
-        {
-            var albums = _getAllServices.GetAlbums();
-            return View(albums);
-        }
-        public IActionResult AlbumCreate(AlbumView album)
+        public IActionResult AlbumDelete(AlbumView album)
         {
 
             var albumInput = new Album()
@@ -55,11 +52,37 @@ namespace PhotoAlbumSystem.Controllers
             };
             if (album.AlbumName != null)
             {
+                _deleteServices.DeleteAlbum(albumInput.Album_Id, albumInput.AlbumName);
+            }
+            return View();
+        }
+
+
+        public IActionResult Album(Album album)
+        {
+            var albums = _getAllServices.GetAlbums();
+            return View(albums);
+        }
+
+
+
+        public IActionResult AlbumCreate(AlbumView album)
+        {
+
+            var albumInput = new Album()
+            {
+                Album_Id = Guid.NewGuid(),
+                AlbumName = album.AlbumName
+            };
+            if (album.AlbumName != null )
+            {
                 bool response = _addServices.AddAlbum(albumInput.Album_Id, albumInput.AlbumName);
             }
 
             return View();
         }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

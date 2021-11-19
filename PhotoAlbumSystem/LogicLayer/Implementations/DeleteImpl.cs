@@ -59,7 +59,7 @@ namespace LogicLayer.Implementations
                 
             };
 
-            ourDatabase.Remove(ourDatabase.Albums.FirstOrDefault(x => x.Album_Id == album.Album_Id));
+            ourDatabase.Remove(ourDatabase.Albums.FirstOrDefault(x => x.AlbumName == album.AlbumName));
             ourDatabase.SaveChanges();
         }
 

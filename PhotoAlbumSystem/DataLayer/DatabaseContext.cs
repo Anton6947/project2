@@ -23,19 +23,10 @@ namespace DataLayer
         public virtual DbSet<AccessType> AcessTypes { get; set; }
 
 
-        public void Remove(object firstOrDefault)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public object FirstOrDefault(Func<object, bool> p)
-        {
-            throw new NotImplementedException();
-        }
-        public object AsNoTracking()
-        {
-            throw new NotImplementedException();
-        }
+        
+       
         public DatabaseContext(DbContextOptions options) : base(options)
         {
 

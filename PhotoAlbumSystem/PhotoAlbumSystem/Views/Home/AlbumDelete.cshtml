@@ -1,0 +1,25 @@
+﻿@model DataLayer.Entities.Album
+
+<h3>Confirm Album name you want to delete</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.LabelFor(model => model.AlbumName, "Album Name")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AlbumName)
+        </dd>
+    </dl>
+    
+    <form asp-action="AlbumDelete">
+        <div class="form-group">
+            <input asp-for="AlbumName" class="form-control" />
+            <span asp-validation-for="AlbumName" class="text-danger"></span>
+        </div>
+        <input type="hidden" asp-for="Album_Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Album">Back to List</a>
+    </form>
+</div>
