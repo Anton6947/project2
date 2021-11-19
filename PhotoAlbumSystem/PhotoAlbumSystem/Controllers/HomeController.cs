@@ -42,13 +42,16 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
 
-
+        //    Photo Get All
 
         public IActionResult Photo(Photo photo)
         {
             var photos = _getAllServices.GetPhotos();
             return View(photos);
         }
+
+        //    Photo Create
+
         public IActionResult PhotoCreate()
         {
             return View();
@@ -72,12 +75,16 @@ namespace PhotoAlbumSystem.Controllers
             return RedirectToAction("Photo");
         }
 
+
+        //       Album Get All
+
         public IActionResult Album(Album album)
         {
             var albums = _getAllServices.GetAlbums();
             return View(albums);
         }
 
+        //      Album Delete
         public IActionResult AlbumDelete(AlbumView album)
         {
 
@@ -92,6 +99,10 @@ namespace PhotoAlbumSystem.Controllers
             }
             return View();
         }
+
+
+        //   Album Update
+
         public IActionResult AlbumUpdate(Guid id)
         {
 
@@ -111,6 +122,8 @@ namespace PhotoAlbumSystem.Controllers
 
             return RedirectToAction("Album");
         }
+
+        //   Album Create
 
         public IActionResult AlbumCreate(AlbumView album)
         {
