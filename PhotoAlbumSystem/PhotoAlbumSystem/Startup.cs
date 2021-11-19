@@ -49,6 +49,7 @@ namespace PhotoAlbumSystem
             services.AddScoped<Delete, DeleteImpl>();
             services.AddScoped<Search, SearchImpl>();
             services.AddScoped<Update, UpdateImpl>();
+            services.AddScoped<GetAll, GetAllImpl>();
 
         }
 

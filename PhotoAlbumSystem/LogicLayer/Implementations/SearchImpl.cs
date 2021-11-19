@@ -33,9 +33,6 @@ namespace LogicLayer.Implementations
             var list = ourDataBase.MetaDatas.AsNoTracking().ToList();
             var entity = ourDataBase.MetaDatas.AsNoTracking().FirstOrDefault(x => x.CapturedByUser_Id == metaData.CapturedByUser_Id);
             
-            
-
-            
         }
 
         public void SearchPhoto(Guid Photo_Id, string FileName, Guid Album_Id)

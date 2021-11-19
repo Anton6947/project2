@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogicLayer.Implementations
 {
-    class GetAllImpl : GetAll
+    public class GetAllImpl : GetAll
     {
         private readonly DatabaseContext ourDataBase;
 
@@ -21,6 +21,18 @@ namespace LogicLayer.Implementations
         {
             var album = from o in ourDataBase.Albums select o;
             return album.ToList();
+        }
+
+        public IEnumerable<Photo> GetPhotos()
+        {
+            var photo = from o in ourDataBase.Photos select o;
+            return photo.ToList();
+        }
+
+        public IEnumerable<MetaData> GetMetaData()
+        {
+            var metaData = from o in ourDataBase.MetaDatas select o;
+            return metaData.ToList();
         }
     }
 }

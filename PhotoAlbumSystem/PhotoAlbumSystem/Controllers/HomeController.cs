@@ -16,13 +16,18 @@ namespace PhotoAlbumSystem.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly Add _addServices;
         private readonly Search _searchServices;
+        private readonly Update _updateServices;
+        private readonly GetAll _getAllServices;
 
 
-        public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices)
+        public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices, Update updateServices, GetAll getAllServices)
         {
             _logger = logger;
             _addServices = addServices;
             _searchServices = searchServices;
+            _updateServices = updateServices;
+            _getAllServices = getAllServices;
+
         }
 
         public IActionResult Index()
@@ -37,7 +42,7 @@ namespace PhotoAlbumSystem.Controllers
 
         public IActionResult Album(Album album)
         {
-            var albums =_searchServices.GetAlbums();
+            var albums = _getAllServices.GetAlbums();
             return View(albums);
         }
         public IActionResult AlbumCreate(AlbumView album)
