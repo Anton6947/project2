@@ -18,6 +18,10 @@ namespace DataLayer.Entities
         public IFormFile FileName { get; set; }
 
         public Guid? Album_Id { get; set; }
+        public string GeoLocation { get; set; }
+        public string Tags { get; set; }
+        public DateTime CapturedDate { get; set; }
+        public string CapturedByUser { get; set; }
 
     }
 }

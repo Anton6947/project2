@@ -68,12 +68,12 @@ namespace PhotoAlbumSystem.Controllers
 
         public IActionResult PhotoCreate()
         {
-            var model = new PhotoView();
+            
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> PhotoUpload(IFormFile file , Guid? Album_Id)
+        public async Task<IActionResult> PhotoUpload(IFormFile file , Guid? Album_Id,MetaData metaData)
         {
 
             
@@ -84,11 +84,17 @@ namespace PhotoAlbumSystem.Controllers
             var blockBlob = container.GetBlockBlobReference(fileName);
 
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
-            await _addServices.AddPhoto(fileName, Album_Id);
+            var photo = new Photo()
+            {
+                Photo_Id = Guid.NewGuid(),
+                FileName = fileName,
+                Album_Id = Album_Id
+            };
+            await _addServices.AddPhoto(photo.Photo_Id, fileName, Album_Id);
 
+            _addServices.AddMetaData(photo.Photo_Id, metaData.GeoLocation, metaData.Tags, metaData.CapturedDate, metaData.CapturedByUser);
 
-
-            return RedirectToAction("MetaDataAdd");
+            return RedirectToAction("Photo");
         }
        
         //  Photo Delete
