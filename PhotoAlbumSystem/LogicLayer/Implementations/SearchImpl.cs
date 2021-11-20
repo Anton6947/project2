@@ -19,7 +19,7 @@ namespace LogicLayer.Implementations
             ourDataBase = db;
         }
 
-        public void SearchMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id)
+        public void SearchMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser)
         {
 
             var metaData = new MetaData()
@@ -27,11 +27,11 @@ namespace LogicLayer.Implementations
                 Photo_Id = Photo_Id,
                 GeoLocation = GeoLocation,
                 CapturedDate = CapturedDate,
-                CapturedByUser_Id = CapturedByUser_Id
+                CapturedByUser = CapturedByUser
             };
 
             var list = ourDataBase.MetaDatas.AsNoTracking().ToList();
-            var entity = ourDataBase.MetaDatas.AsNoTracking().FirstOrDefault(x => x.CapturedByUser_Id == metaData.CapturedByUser_Id);
+            var entity = ourDataBase.MetaDatas.AsNoTracking().FirstOrDefault(x => x.CapturedByUser == metaData.CapturedByUser);
             
         }
 

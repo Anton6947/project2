@@ -12,7 +12,7 @@ namespace PhotoAlbumSystem.Models
         public string GeoLocation { get; set; }
         public string Tags { get; set; }
         public DateTime CapturedDate { get; set; }
-        public string CapturedByUser_Id { get; set; }
+        public string CapturedByUser { get; set; }
 
        
     }

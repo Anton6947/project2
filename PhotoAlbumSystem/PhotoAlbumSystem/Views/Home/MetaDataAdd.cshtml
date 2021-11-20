@@ -1,0 +1,47 @@
+﻿@model DataLayer.Entities.MetaData
+
+<h4>Enter the relevant MetaData for your photo.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MetaDataAdd">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Photo_Id" class="control-label"></label>
+                <input asp-for="Photo_Id" class="form-control" />
+                <span asp-validation-for="Photo_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeoLocation" class="control-label"></label>
+                <input asp-for="GeoLocation" class="form-control" />
+                <span asp-validation-for="GeoLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CapturedDate" class="control-label"></label>
+                <input asp-for="CapturedDate" class="form-control" />
+                <span asp-validation-for="CapturedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CapturedByUser" class="control-label"></label>
+                <input asp-for="CapturedByUser" class="form-control" />
+                <span asp-validation-for="CapturedByUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

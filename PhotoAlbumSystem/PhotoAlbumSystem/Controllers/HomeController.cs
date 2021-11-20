@@ -88,7 +88,7 @@ namespace PhotoAlbumSystem.Controllers
 
 
 
-            return RedirectToAction("Photo");
+            return RedirectToAction("MetaDataAdd");
         }
        
         //  Photo Delete
@@ -107,7 +107,23 @@ namespace PhotoAlbumSystem.Controllers
             }
             return View();
         }
+        public IActionResult MetaDataAdd(Guid id)
+        {
+           
+                           
+            var metaData = new MetaData()/*_getAllServices.GetMetaData().Where(x => x.Photo_Id == id).FirstOrDefault()*/;
+            metaData.Photo_Id = id;
 
+            return View(metaData);
+        }
+        [HttpPost]
+        public IActionResult MetaDataAdd(MetaData metaData)
+        {
+            
+            _addServices.AddMetaData(metaData.Photo_Id, metaData.GeoLocation, metaData.Tags, metaData.CapturedDate, metaData.CapturedByUser);
+            
+            return RedirectToAction("Photo");
+        }
 
         //       Album Get All
 

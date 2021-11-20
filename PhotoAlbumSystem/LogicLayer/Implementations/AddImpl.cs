@@ -12,23 +12,23 @@ namespace LogicLayer.Implementations
     public class AddImpl : Add
     {
         private readonly DatabaseContext ourDatabase;
+        public Guid PhotoIdToAdd;
         public AddImpl(DatabaseContext db)
         {
             ourDatabase = db;
         }
-        public MetaData AddMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id)
+        public void AddMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser)
         {
             var metaData = new MetaData()
             {
-                Photo_Id = Guid.NewGuid(),
+                Photo_Id = Photo_Id,
                 GeoLocation = GeoLocation,
                 Tags = Tags,
                 CapturedDate = CapturedDate,
-                CapturedByUser_Id = CapturedByUser_Id
+                CapturedByUser = CapturedByUser
             };
             ourDatabase.Add(metaData);
             ourDatabase.SaveChanges();
-            return metaData;
         }
         public async Task AddPhoto(string FileName, Guid? Album_Id)
         {
@@ -38,6 +38,7 @@ namespace LogicLayer.Implementations
                 FileName = FileName,
                 Album_Id = Album_Id
             };
+            PhotoIdToAdd = photo.Photo_Id;
             ourDatabase.Add(photo);
             await ourDatabase.SaveChangesAsync();
             
