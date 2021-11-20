@@ -19,18 +19,9 @@ namespace LogicLayer.Implementations
             ourDatabase = db;
         }
 
-        public void DeleteMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser)
-        {
-
-            var metaData = new MetaData()
-            {
-                Photo_Id = Photo_Id,
-                GeoLocation = GeoLocation,
-                CapturedDate = CapturedDate,
-                CapturedByUser = CapturedByUser
-            };
-
-            ourDatabase.Remove(ourDatabase.MetaDatas.FirstOrDefault(x => x.Photo_Id == metaData.Photo_Id));
+        public void DeleteMetaData(Guid Photo_Id)
+        {            
+            ourDatabase.Remove(ourDatabase.MetaDatas.FirstOrDefault(x => x.Photo_Id == Photo_Id));
             ourDatabase.SaveChanges();
         }
 

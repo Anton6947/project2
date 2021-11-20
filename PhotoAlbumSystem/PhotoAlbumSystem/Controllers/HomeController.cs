@@ -21,6 +21,7 @@ namespace PhotoAlbumSystem.Controllers
         private string AzureConectionString { get; }
         private PhotoUpload _photoUploadServices;
 
+
         private readonly ILogger<HomeController> _logger;
         private readonly Add _addServices;
         private readonly Search _searchServices;
@@ -65,12 +66,7 @@ namespace PhotoAlbumSystem.Controllers
         }
         public IActionResult MetaDataView(Guid id)
         {
-            //var photoInput = new Photo()
-            //{
-            //    Photo_Id = photo.Photo_Id,
-            //    FileName = photo.FileName,
-            //    Album_Id = photo.Album_Id
-            //};
+            
             var metaDataInput = _getAllServices.GetMetaDataSpecific(id);
             return View(metaDataInput);
         }
@@ -120,7 +116,10 @@ namespace PhotoAlbumSystem.Controllers
             };
             if (photo.FileName != null)
             {
+                
+                
                 _deleteServices.DeletePhoto(photoInput.Photo_Id, photoInput.FileName, photoInput.Album_Id);
+                _deleteServices.DeleteMetaData(photoInput.Photo_Id);
             }
             return View();
         }       
