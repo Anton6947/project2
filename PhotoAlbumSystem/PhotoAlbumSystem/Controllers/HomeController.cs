@@ -1,18 +1,26 @@
 ﻿using DataLayer.Entities;
 using LogicLayer.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PhotoAlbumSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace PhotoAlbumSystem.Controllers
 {
     public class HomeController : Controller
     {
+
+        private IConfiguration _config;
+        private string AzureConectionString { get; }
+        private PhotoUpload _photoUploadServices;
+
         private readonly ILogger<HomeController> _logger;
         private readonly Add _addServices;
         private readonly Search _searchServices;
@@ -21,15 +29,21 @@ namespace PhotoAlbumSystem.Controllers
         private readonly Delete _deleteServices;
 
 
-        public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices, Update updateServices, GetAll getAllServices, Delete deleteServices)
+        public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices, Update updateServices, 
+            GetAll getAllServices, Delete deleteServices, IConfiguration config , PhotoUpload photoUploadServices)
         {
+
+            _config = config;
+            AzureConectionString = _config["AzureStorageConectionString"];
+
+
             _logger = logger;
             _addServices = addServices;
             _searchServices = searchServices;
             _updateServices = updateServices;
             _getAllServices = getAllServices;
             _deleteServices = deleteServices;
-
+            _photoUploadServices = photoUploadServices;
         }
 
         public IActionResult Index()
@@ -54,27 +68,30 @@ namespace PhotoAlbumSystem.Controllers
 
         public IActionResult PhotoCreate()
         {
+            var model = new PhotoView();
             return View();
         }
+
         [HttpPost]
-        public IActionResult PhotoCreate(PhotoView photo)
+        public async Task<IActionResult> PhotoUpload(IFormFile file , Guid? Album_Id)
         {
 
-            var photoInput = new Photo()
-            {
-                Photo_Id = Guid.NewGuid(),
-                FileName = photo.FileName.ToString(),
-                Album_Id = photo.Album_Id
-            };
+            
+            var container = _photoUploadServices.GetBlobContainer(AzureConectionString, "images");
+            var content = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+            var fileName = content.FileName.Trim('"');
 
-            if (photo.FileName != null)
-            {
-                bool response = _addServices.AddPhoto(photoInput.FileName, photoInput.Album_Id);
-            }
+            var blockBlob = container.GetBlockBlobReference(fileName);
+
+            await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
+            await _addServices.AddPhoto(fileName, Album_Id);
+
+
 
             return RedirectToAction("Photo");
         }
        
+        //  Photo Delete
 
         public IActionResult PhotoDelete(Photo photo)
         {

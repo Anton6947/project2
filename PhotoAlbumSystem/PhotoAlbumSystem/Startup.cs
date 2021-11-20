@@ -50,6 +50,7 @@ namespace PhotoAlbumSystem
             services.AddScoped<Search, SearchImpl>();
             services.AddScoped<Update, UpdateImpl>();
             services.AddScoped<GetAll, GetAllImpl>();
+            services.AddScoped<PhotoUpload, PhotoUploadImpl>();
 
         }
 

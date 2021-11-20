@@ -22,11 +22,13 @@ namespace DataLayer
         public virtual DbSet<PhotoAccess> PhotoAccessors { get; set; }
         public virtual DbSet<AccessType> AcessTypes { get; set; }
 
+        public virtual DbSet<PhotoView> PhotoViews { get; set; }
 
-        
 
-        
-       
+
+
+
+
         public DatabaseContext(DbContextOptions options) : base(options)
         {
 

@@ -30,7 +30,7 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
             return metaData;
         }
-        public bool AddPhoto(string FileName, Guid? Album_Id)
+        public async Task AddPhoto(string FileName, Guid? Album_Id)
         {
             var photo = new Photo()
             {
@@ -39,8 +39,8 @@ namespace LogicLayer.Implementations
                 Album_Id = Album_Id
             };
             ourDatabase.Add(photo);
-            ourDatabase.SaveChanges();
-            return true;
+            await ourDatabase.SaveChangesAsync();
+            
         }
         public bool AddAlbum(Guid Album_Id, string AlbumName)
         {

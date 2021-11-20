@@ -32,7 +32,7 @@ namespace LogicLayer.Implementations
             return metaData;
         }
 
-        public Photo UpdatePhoto(Guid Photo_Id,string FileName, Guid Album_Id)
+        public Photo UpdatePhoto(Guid Photo_Id, string FileName, Guid Album_Id)
         {
             var photo = new Photo()
             {

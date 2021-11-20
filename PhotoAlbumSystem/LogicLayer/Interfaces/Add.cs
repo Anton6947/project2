@@ -10,7 +10,7 @@ namespace LogicLayer.Interfaces
     public interface Add
     {
         MetaData AddMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser_Id);
-        bool AddPhoto(string FileName, Guid? Album_Id);
+        Task AddPhoto(string FileName, Guid? Album_Id);
         bool AddAlbum(Guid Album_Id, string AlbumName);
         PhotoAccess AddPhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id);
         AlbumAccess AddAlbumAccess(Guid AlbumAccess_Id, DateTime Date, string User_Id, Guid Album_Id, Guid AccessType_Id);
