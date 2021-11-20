@@ -14,5 +14,7 @@ namespace LogicLayer.Interfaces
         IEnumerable<Photo> GetPhotos();
 
         IEnumerable<MetaData> GetMetaData();
+
+        MetaData GetMetaDataSpecific(Guid Photo_Id);
     }
 }

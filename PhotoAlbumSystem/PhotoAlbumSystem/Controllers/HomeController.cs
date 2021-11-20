@@ -63,6 +63,17 @@ namespace PhotoAlbumSystem.Controllers
             var photos = _getAllServices.GetPhotos();
             return View(photos);
         }
+        public IActionResult MetaDataView(Guid id)
+        {
+            //var photoInput = new Photo()
+            //{
+            //    Photo_Id = photo.Photo_Id,
+            //    FileName = photo.FileName,
+            //    Album_Id = photo.Album_Id
+            //};
+            var metaDataInput = _getAllServices.GetMetaDataSpecific(id);
+            return View(metaDataInput);
+        }
 
         //    Photo Create
 

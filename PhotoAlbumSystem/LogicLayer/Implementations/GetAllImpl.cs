@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using DataLayer.Entities;
 using LogicLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,12 @@ namespace LogicLayer.Implementations
         {
             var metaData = from o in ourDataBase.MetaDatas select o;
             return metaData.ToList();
+        }
+        public MetaData GetMetaDataSpecific(Guid Photo_Id)
+        {
+            var metDataRetrieved = ourDataBase.MetaDatas.AsNoTracking().FirstOrDefault(x => x.Photo_Id == Photo_Id);
+
+            return metDataRetrieved;
         }
     }
 }
