@@ -92,14 +92,15 @@ namespace PhotoAlbumSystem.Controllers
 
         //    Photo Create
 
-        public IActionResult PhotoCreate()
+        public IActionResult PhotoCreate(string albumName)
         {
-            
-            return View();
+            var photoView = new PhotoView() ;
+            photoView.AlbumName = albumName;
+            return View(photoView);
         }
 
         [HttpPost]
-        public async Task<IActionResult> PhotoUpload(IFormFile file , Guid? Album_Id,MetaData metaData)
+        public async Task<IActionResult> PhotoUpload(IFormFile file , PhotoView photoView)
         {
 
             
@@ -110,15 +111,17 @@ namespace PhotoAlbumSystem.Controllers
             var blockBlob = container.GetBlockBlobReference(fileName);
 
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
+
+            Guid? albumId = _getAllServices.GetAlbumId(photoView.AlbumName);
             var photo = new Photo()
             {
                 Photo_Id = Guid.NewGuid(),
                 FileName = fileName,
-                Album_Id = Album_Id
+                Album_Id = albumId
             };
-            await _addServices.AddPhoto(photo.Photo_Id, fileName, Album_Id);
+            await _addServices.AddPhoto(photo.Photo_Id, fileName, albumId);
 
-            _addServices.AddMetaData(photo.Photo_Id, metaData.GeoLocation, metaData.Tags, metaData.CapturedDate, metaData.CapturedByUser);
+            _addServices.AddMetaData(photo.Photo_Id, photoView.GeoLocation, photoView.Tags, photoView.CapturedDate, photoView.CapturedByUser);
 
             return RedirectToAction("Photo");
         }
@@ -127,7 +130,7 @@ namespace PhotoAlbumSystem.Controllers
         public IActionResult GivePhotoAccess(string username)
         {          
             var photoAccess = new PhotoAccessView();           
-            photoAccess.User_Id = username;
+            photoAccess.UserName = username;
             return View(photoAccess);
 
         }

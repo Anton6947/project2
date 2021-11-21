@@ -52,6 +52,11 @@ namespace LogicLayer.Implementations
             var User = ourDataBase.Users.AsNoTracking().FirstOrDefault(x => x.UserName == Username);
             return User.Id;
         }
+        public Guid? GetAlbumId(string albumName)
+        {
+            var album = ourDataBase.Albums.AsNoTracking().FirstOrDefault(x => x.AlbumName == albumName);
+            return album.Album_Id;
+        }
     }
 }
 

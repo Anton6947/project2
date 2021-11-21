@@ -18,5 +18,6 @@ namespace LogicLayer.Interfaces
         MetaData GetMetaDataSpecific(Guid Photo_Id);
 
         string GetUser(string Username);
+        Guid? GetAlbumId(string albumName);
     }
 }
