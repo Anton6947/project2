@@ -18,6 +18,7 @@ namespace DataLayer.Entities
         [ForeignKey(nameof(Album))]
         public Guid? Album_Id { get; set; }
         public Album Album { get; set; }
+        public string Url{ get; set; }
 
     }
 }

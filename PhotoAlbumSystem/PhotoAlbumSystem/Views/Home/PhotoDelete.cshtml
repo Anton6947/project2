@@ -24,7 +24,7 @@
             <span asp-validation-for="FileName" class="text-danger"></span>
         </div>
         <input type="hidden" asp-for="Photo_Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" asp-action="PhotoDeleteConfirm" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Photo">Back to List</a>
     </form>
 </div>

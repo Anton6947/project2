@@ -57,6 +57,11 @@ namespace LogicLayer.Implementations
             var album = ourDataBase.Albums.AsNoTracking().FirstOrDefault(x => x.AlbumName == albumName);
             return album.Album_Id;
         }
+        public Guid GetPhotoId(string fileName)
+        {
+            var photo = ourDataBase.Photos.AsNoTracking().FirstOrDefault(x => x.FileName == fileName);
+            return photo.Photo_Id;
+        }
     }
 }
 

@@ -11,12 +11,11 @@
             Photo Name
         </tr>
     </thead>
-    <tbody>      
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    <img src="@Html.Raw(item.Url)" style="width: 100px; height: 100px;" />
                     @Html.DisplayFor(modelItem => item.FileName)
                 </td>
                 <td>

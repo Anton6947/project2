@@ -30,13 +30,14 @@ namespace LogicLayer.Implementations
             ourDatabase.Add(metaData);
             ourDatabase.SaveChanges();
         }
-        public async Task AddPhoto(Guid Photo_Id,string FileName, Guid? Album_Id)
+        public async Task AddPhoto(Guid Photo_Id,string FileName, Guid? Album_Id,string url)
         {
             var photo = new Photo()
             {
                 Photo_Id = Photo_Id,
                 FileName = FileName,
-                Album_Id = Album_Id
+                Album_Id = Album_Id,
+                Url = url
             };
             PhotoIdToAdd = photo.Photo_Id;
             ourDatabase.Add(photo);

@@ -19,5 +19,6 @@ namespace LogicLayer.Interfaces
 
         string GetUser(string Username);
         Guid? GetAlbumId(string albumName);
+        Guid GetPhotoId(string fileName);
     }
 }

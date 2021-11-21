@@ -11,7 +11,7 @@ namespace LogicLayer.Interfaces
     {        
         void DeleteMetaData(Guid Photo_Id);
 
-        void DeletePhoto(Guid Photo_Id, string FileName, Guid? Album_Id);
+        void DeletePhoto(Guid Photo_Id, string FileName, Guid? Album_Id, string Url);
 
         void DeleteAlbum(Guid Album_Id, string AlbumName);
 

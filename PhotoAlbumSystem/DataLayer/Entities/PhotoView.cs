@@ -23,6 +23,7 @@ namespace DataLayer.Entities
         public string Tags { get; set; }
         public DateTime CapturedDate { get; set; }
         public string CapturedByUser { get; set; }
+        public string Url { get; set; }
 
     }
 }

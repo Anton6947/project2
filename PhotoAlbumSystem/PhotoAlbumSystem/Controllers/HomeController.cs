@@ -68,6 +68,12 @@ namespace PhotoAlbumSystem.Controllers
             var photos = _getAllServices.GetPhotos().Where(x => x.Photo_Id == metaDataInput.Photo_Id).FirstOrDefault();
             return View(photos);
         }
+        public IActionResult ViewPhotos(string albumName)
+        {
+            Guid? albumId = _getAllServices.GetAlbumId(albumName);
+            var photos = _getAllServices.GetPhotos().Where(x => x.Album_Id == albumId).FirstOrDefault(); ;
+            return View(photos);
+        }
         public IActionResult Photo(Photo photo)
         {
             var photos = _getAllServices.GetPhotos();
@@ -119,7 +125,8 @@ namespace PhotoAlbumSystem.Controllers
                 FileName = fileName,
                 Album_Id = albumId
             };
-            await _addServices.AddPhoto(photo.Photo_Id, fileName, albumId);
+            string Url = "https://cmpg323imageblob.blob.core.windows.net/images/" + fileName;
+            await _addServices.AddPhoto(photo.Photo_Id, fileName, albumId,Url);
 
             _addServices.AddMetaData(photo.Photo_Id, photoView.GeoLocation, photoView.Tags, photoView.CapturedDate, photoView.CapturedByUser);
 
@@ -143,21 +150,28 @@ namespace PhotoAlbumSystem.Controllers
             return RedirectToAction("Photo");
         }
         //  Photo Delete
-
-        public IActionResult PhotoDelete(Photo photo)
+        public IActionResult PhotoDelete(Guid id)
         {
+            var photoInput = _getAllServices.GetPhotos().Where(x => x.Photo_Id == id).FirstOrDefault();
+            return View(photoInput);
+        }
+        public IActionResult PhotoDeleteConfirm(Photo photo)
+        {
+            string fileName = photo.FileName;
+            Guid photoId = _getAllServices.GetPhotoId(fileName);
             var photoInput = new Photo()
             {
-                Photo_Id = photo.Photo_Id,
+                Photo_Id = photoId,
                 FileName = photo.FileName,
                 Album_Id = photo.Album_Id
             };
+            string url = "https://cmpg323imageblob.blob.core.windows.net/images/" + photoInput.FileName;
             if (photo.FileName != null)
             {                              
-                _deleteServices.DeletePhoto(photoInput.Photo_Id, photoInput.FileName, photoInput.Album_Id);
-                _deleteServices.DeleteMetaData(photoInput.Photo_Id);
+                _deleteServices.DeletePhoto(photoId, photoInput.FileName, photoInput.Album_Id,url);
+                _deleteServices.DeleteMetaData(photoId);
             }
-            return View();
+            return RedirectToAction("Index");
         }       
 
         //       Album Get All

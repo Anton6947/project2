@@ -26,14 +26,15 @@ namespace LogicLayer.Implementations
         }
 
 
-        public void DeletePhoto(Guid Photo_Id, string FileName, Guid? Album_Id)
+        public void DeletePhoto(Guid Photo_Id, string FileName, Guid? Album_Id, string url)
         {
 
             var photo = new Photo()
             {
                 Photo_Id = Photo_Id,
                 FileName = FileName,
-                Album_Id = Album_Id
+                Album_Id = Album_Id,
+                Url = url
             };
 
             ourDatabase.Remove(ourDatabase.Photos.FirstOrDefault(x=> x.FileName == photo.FileName));
