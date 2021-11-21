@@ -13,35 +13,8 @@
 </head>
 <body>
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <div>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <a asp-controller="Account" asp-action="Logout">@User.Identity.Name, Logout</a>
-                    }
-                    else
-                    {
-                        <a asp-controller="Account" asp-action="Login">Login</a>
-                    }
-
-                </div>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"></a>
-            </div>
-            <div class="container">
-                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a asp-controller="Image" asp-action="Upload">Upload</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>*@
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-secondary border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PhotoAlbumSystem</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -49,16 +22,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <div >
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a asp-controller="Account" asp-action="Logout">@User.Identity.Name, Logout</a>
-                        }
-                        else
-                        {
-                            <a asp-controller="Account" asp-action="Login">Login</a>
-                        }
-                    </div>
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -69,8 +32,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Album">Albums</a>
                         </li>
-                    </ul>-->
-                @*<ul class="navbar-nav ml-auto ">
+                    </ul>
+                <ul class="navbar-nav ml-auto ">
                     @if (SignInMgr.IsSignedIn(User))
                     {
                         <li class="nav-item">
@@ -90,7 +53,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
                         </li>
                     }
-                </ul>*@
+                </ul>
             </div>
         </div>
     </nav>-

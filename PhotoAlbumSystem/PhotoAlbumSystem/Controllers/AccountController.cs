@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PhotoAlbumSystem.Models;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace PhotoAlbumSystem.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private UserManager<IdentityUser> UserMgr { get; }
@@ -77,6 +79,9 @@ namespace PhotoAlbumSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginView model)
         {
+            
+
+
             if (ModelState.IsValid)
             {
                 
