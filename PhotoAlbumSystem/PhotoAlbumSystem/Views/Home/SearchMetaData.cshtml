@@ -1,14 +1,14 @@
-﻿@model DataLayer.Entities.MetaData
+﻿@model SearchMeta
 
-<h4>MetaData</h4>
+<h4>Search Photos Via Metadata</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="SearchMetaData">           
             <div class="form-group">
-                Tags
-                <input asp-for="Tags" class="form-control" />
-                <span asp-validation-for="Tags" class="text-danger"></span>
+                Search here
+                <input asp-for="searchString" class="form-control" />
+                <span asp-validation-for="searchString" class="text-danger"></span>
             </div>          
             <div class="form-group">
                 <input type="submit" asp-action="TaggedPhotos" value ="Search" class="btn btn-primary" />

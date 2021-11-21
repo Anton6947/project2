@@ -20,7 +20,8 @@ namespace LogicLayer.Implementations
         }
 
         public void DeleteMetaData(Guid Photo_Id)
-        {            
+        {
+            ourDatabase.MetaDatas.FirstOrDefault(x => x.Photo_Id == Photo_Id);
             ourDatabase.Remove(ourDatabase.MetaDatas.FirstOrDefault(x => x.Photo_Id == Photo_Id));
             ourDatabase.SaveChanges();
         }

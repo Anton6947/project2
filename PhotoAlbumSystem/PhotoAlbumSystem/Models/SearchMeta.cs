@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace PhotoAlbumSystem.Models
 {
-    public class AccessTypeView
+    public class SearchMeta
     {
-        public string Name { get; set; }
-
+        public string searchString { get; set; }
     }
 }

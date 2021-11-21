@@ -20,7 +20,7 @@
                 <td>
                     <a asp-action="AlbumUpdate" asp-route-id="@item.Album_Id">Edit</a> |
                     <a asp-action="AlbumDelete" asp-route-id="@item.Album_Id">Delete</a> |
-                    <a asp-action="ViewPhotos" asp-route-id="@item.AlbumName">View Photos</a> |
+                    <a asp-action="ViewPhotos" asp-route-albumId="@item.Album_Id">View Photos</a> |
                 </td>
             </tr>
         }

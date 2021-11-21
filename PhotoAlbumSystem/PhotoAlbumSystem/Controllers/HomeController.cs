@@ -62,16 +62,16 @@ namespace PhotoAlbumSystem.Controllers
         {
             return View();
         }
-        public IActionResult TaggedPhotos(MetaData metaData)
+        public IActionResult TaggedPhotos(string searchString)
         {
-            var metaDataInput = _getAllServices.GetMetaData().Where(x => x.Tags == metaData.Tags).FirstOrDefault();
-            var photos = _getAllServices.GetPhotos().Where(x => x.Photo_Id == metaDataInput.Photo_Id).FirstOrDefault();
+            var IdList= _getAllServices.GetMetaData().Where(x => x.Tags.Contains(searchString, StringComparison.OrdinalIgnoreCase) || x.GeoLocation.Contains(searchString, StringComparison.OrdinalIgnoreCase)).Select(x => x.Photo_Id);
+            var photos = _getAllServices.GetPhotos().Where(x => IdList.Contains(x.Photo_Id));
             return View(photos);
         }
-        public IActionResult ViewPhotos(string albumName)
+        public IActionResult ViewPhotos(Guid? albumId)
         {
-            Guid? albumId = _getAllServices.GetAlbumId(albumName);
-            var photos = _getAllServices.GetPhotos().Where(x => x.Album_Id == albumId).FirstOrDefault(); ;
+            //Guid? albumId = _getAllServices.GetAlbumId(albumName);
+            var photos = _getAllServices.GetPhotos().Where(x => x.Album_Id == albumId) ;
             return View(photos);
         }
         public IActionResult Photo(Photo photo)
@@ -169,9 +169,8 @@ namespace PhotoAlbumSystem.Controllers
             if (photo.FileName != null)
             {                              
                 _deleteServices.DeletePhoto(photoId, photoInput.FileName, photoInput.Album_Id,url);
-                _deleteServices.DeleteMetaData(photoId);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Photo");
         }       
 
         //       Album Get All
