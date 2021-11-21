@@ -1,16 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Album Page";//Test
-}
+﻿
 @model DataLayer.Entities.Album
 
-<h4>Album</h4>
+<h4>Create Album</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AlbumCreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="AlbumName" class="control-label"></label>
+                Album Name
                 <input asp-for="AlbumName" class="form-control" />
                 <span asp-validation-for="AlbumName" class="text-danger"></span>
             </div>
@@ -22,7 +20,7 @@
 </div>
 
 <div>
-    <a asp-action="Album">Back to List</a>
+    <a asp-action="Album">Back to Albums</a>
 </div>
 
 @section Scripts {

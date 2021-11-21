@@ -1,20 +1,14 @@
 ﻿@model IEnumerable<DataLayer.Entities.Photo>
 
 <p>
-    <a asp-action="PhotoCreate">Create New</a> |
+    <a asp-action="PhotoCreate">Upload New Photo</a> |
     <a asp-action="GivePhotoAccess">Share a Photo</a> |
     <a asp-action="SearchMetaData">Search via tags</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FileName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Album)
-            </th>
-            <th></th>
+            Photo Name
         </tr>
     </thead>
     <tbody>
@@ -22,9 +16,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FileName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Album.Album_Id)
             </td>
             <td>
                 <a asp-action="MetaDataView" asp-route-id="@item.Photo_Id">Meta data</a> |
