@@ -17,11 +17,11 @@ namespace LogicLayer.Implementations
         {
             ourDatabase = db;
         }
-        public MetaData UpdateMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser)
+        public void UpdateMetaData(Guid Photo_Id, string GeoLocation, string Tags, DateTime CapturedDate, string CapturedByUser)
         {
             var metaData = new MetaData()
             {
-                Photo_Id = Guid.NewGuid(),
+                Photo_Id = Photo_Id,
                 GeoLocation = GeoLocation,
                 Tags = Tags,
                 CapturedDate = CapturedDate,
@@ -29,7 +29,6 @@ namespace LogicLayer.Implementations
             };
             ourDatabase.Update(metaData);
             ourDatabase.SaveChanges();
-            return metaData;
         }
 
         public Photo UpdatePhoto(Guid Photo_Id, string FileName, Guid Album_Id)

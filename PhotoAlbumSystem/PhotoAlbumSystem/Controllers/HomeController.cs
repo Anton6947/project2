@@ -27,7 +27,7 @@ namespace PhotoAlbumSystem.Controllers
         private readonly Search _searchServices;
         private readonly Update _updateServices;
         private readonly GetAll _getAllServices;
-        private readonly Delete _deleteServices;
+        private readonly Delete _deleteServices;       
 
 
         public HomeController(ILogger<HomeController> logger , Add addServices , Search searchServices, Update updateServices, 
@@ -65,10 +65,20 @@ namespace PhotoAlbumSystem.Controllers
             return View(photos);
         }
         public IActionResult MetaDataView(Guid id)
-        {
-            
+        {            
             var metaDataInput = _getAllServices.GetMetaDataSpecific(id);
             return View(metaDataInput);
+        }
+        public IActionResult UpdateMetaData(Guid id)
+        {            
+            var metaData = _getAllServices.GetMetaDataSpecific(id);
+            return View(metaData);
+        }
+        [HttpPost]
+        public IActionResult UpdateMetaData(MetaData metaData)
+        {
+            _updateServices.UpdateMetaData(metaData.Photo_Id, metaData.GeoLocation, metaData.Tags, metaData.CapturedDate, metaData.CapturedByUser);
+            return View("MetaDataView",metaData);
         }
 
         //    Photo Create
@@ -104,6 +114,11 @@ namespace PhotoAlbumSystem.Controllers
             return RedirectToAction("Photo");
         }
        
+        //  Grant Photo Access
+        public IActionResult GivePhotoAccess()
+        {
+            return View();
+        }
         //  Photo Delete
 
         public IActionResult PhotoDelete(Photo photo)
@@ -115,9 +130,7 @@ namespace PhotoAlbumSystem.Controllers
                 Album_Id = photo.Album_Id
             };
             if (photo.FileName != null)
-            {
-                
-                
+            {                              
                 _deleteServices.DeletePhoto(photoInput.Photo_Id, photoInput.FileName, photoInput.Album_Id);
                 _deleteServices.DeleteMetaData(photoInput.Photo_Id);
             }
@@ -147,7 +160,11 @@ namespace PhotoAlbumSystem.Controllers
             }
             return View();
         }
-
+        //  Grant Album Access
+        public IActionResult GiveAlbumAccess()
+        {
+            return View();
+        }
 
         //   Album Update
 
