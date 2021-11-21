@@ -33,12 +33,6 @@ namespace DataLayer.Entities
 
         public Album Album { get; set; }
 
-        [ForeignKey(nameof(AccessType))]
-
-        public Guid AccessType_Id { get; set; }
-
-        public AccessType AccessType { get; set; }
-
 
 
     }

@@ -7,8 +7,9 @@ namespace PhotoAlbumSystem.Models
 {
     public class PhotoAccessView
     {
+        public Guid Photo_Id { get; set; }
 
-
+        public string FileName { get; set; }
 
         public DateTime Date { get; set; }
 

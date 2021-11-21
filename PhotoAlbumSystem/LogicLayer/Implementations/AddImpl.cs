@@ -54,22 +54,20 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
             return true;
         }
-        public PhotoAccess AddPhotoAccess(Guid PhotoAccess_Id, DateTime Date, string User_Id, Guid Photo_Id, Guid AccessType_Id)
+        public void AddPhotoAccess(Guid id,string userId)
         {
             var photoAccess = new PhotoAccess()
             {
                 PhotoAccess_Id = Guid.NewGuid(),
-                Date = Date,
-                User_Id = User_Id,
-                Photo_Id = Photo_Id,
-                AccessType_Id = AccessType_Id
+                Date = DateTime.Now,
+                User_Id = userId,
+                Photo_Id =id,               
             };
             ourDatabase.Add(photoAccess);
             ourDatabase.SaveChanges();
-            return photoAccess;
         }
 
-        public AlbumAccess AddAlbumAccess(Guid AlbumAccess_Id, DateTime Date, string User_Id, Guid Album_Id, Guid AccessType_Id)
+        public void AddAlbumAccess(Guid AlbumAccess_Id, DateTime Date, string User_Id, Guid Album_Id, Guid AccessType_Id)
         {
             var albumAccess = new AlbumAccess()
             {
@@ -77,11 +75,9 @@ namespace LogicLayer.Implementations
                 Date = Date,
                 User_Id = User_Id,
                 Album_Id = Album_Id,
-                AccessType_Id = AccessType_Id
             };
             ourDatabase.Add(albumAccess);
             ourDatabase.SaveChanges();
-            return albumAccess;
 
         }
     }

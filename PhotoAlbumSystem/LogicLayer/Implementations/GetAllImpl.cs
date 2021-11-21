@@ -41,5 +41,12 @@ namespace LogicLayer.Implementations
 
             return metDataRetrieved;
         }
+        public PhotoAccess GetPhotoAccessSpecific(Guid Photo_Id)
+        {
+            var photoAccess = ourDataBase.PhotoAccessors.AsNoTracking().FirstOrDefault(x => x.Photo_Id == Photo_Id);
+
+            return photoAccess;
+        }
     }
 }
+

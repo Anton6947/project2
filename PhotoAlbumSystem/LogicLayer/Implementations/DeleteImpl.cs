@@ -62,8 +62,7 @@ namespace LogicLayer.Implementations
                 PhotoAccess_Id = PhotoAccess_Id,
                 Date = Date,
                 User_Id = User_Id,
-                Photo_Id = Photo_Id,
-                AccessType_Id = AccessType_Id,
+                Photo_Id = Photo_Id
 
 
             };
@@ -80,10 +79,7 @@ namespace LogicLayer.Implementations
                 AlbumAccess_Id = AlbumAccess_Id,
                 Date = Date,
                 User_Id = User_Id,
-                Album_Id = Album_Id,
-                AccessType_Id = AccessType_Id,
-
-
+                Album_Id = Album_Id
             };
 
             ourDatabase.Remove(ourDatabase.AlbumAccessors.FirstOrDefault(x => x.User_Id == albumAccess.User_Id));

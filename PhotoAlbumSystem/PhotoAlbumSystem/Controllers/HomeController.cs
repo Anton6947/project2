@@ -115,9 +115,19 @@ namespace PhotoAlbumSystem.Controllers
         }
        
         //  Grant Photo Access
-        public IActionResult GivePhotoAccess()
+        public IActionResult GivePhotoAccess(string userId)
+        {          
+            var photoAccess = new PhotoAccessView();           
+            photoAccess.User_Id = userId;
+            return View(photoAccess);
+
+        }
+        [HttpPost]
+        public IActionResult GivePhotoAccess(PhotoAccessView photoAccess )
         {
-            return View();
+            var photo = _getAllServices.GetPhotos().Where(x => x.FileName == photoAccess.FileName).FirstOrDefault();
+            _addServices.AddPhotoAccess(photo.Photo_Id, photoAccess.User_Id);
+            return RedirectToAction("Photo");
         }
         //  Photo Delete
 

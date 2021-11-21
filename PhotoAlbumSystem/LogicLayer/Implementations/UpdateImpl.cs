@@ -62,8 +62,7 @@ namespace LogicLayer.Implementations
                 PhotoAccess_Id = Guid.NewGuid(),
                 Date = Date,
                 User_Id = User_Id,
-                Photo_Id = Photo_Id,
-                AccessType_Id = AccessType_Id
+                Photo_Id = Photo_Id
             };
             ourDatabase.Update(photoAccess);
             ourDatabase.SaveChanges();
@@ -76,8 +75,7 @@ namespace LogicLayer.Implementations
                 AlbumAccess_Id = Guid.NewGuid(),
                 Date = Date,
                 User_Id = User_Id,
-                Album_Id = Album_Id,
-                AccessType_Id = AccessType_Id
+                Album_Id = Album_Id
             };
             ourDatabase.Update(albumAccess);
             ourDatabase.SaveChanges();
