@@ -1,4 +1,5 @@
 using DataLayer;
+using DataLayer.Entities;
 using LogicLayer.Implementations;
 using LogicLayer.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PhotoAlbumSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,14 +38,22 @@ namespace PhotoAlbumSystem
                     x.MigrationsAssembly("DataLayer");
                 });
             });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+            });
+
+
             services.AddIdentity<IdentityUser, IdentityRole>(
             options => {
-                options.SignIn.RequireConfirmedAccount = false;
+                options.User.RequireUniqueEmail = true;
 
-                //Other options go here
-            }
-            )
-        .AddEntityFrameworkStores<DatabaseContext>();
+                
+            }).AddEntityFrameworkStores<DatabaseContext>();
+
+            
+
 
             services.AddScoped<Add, AddImpl>();
             services.AddScoped<Delete, DeleteImpl>();
@@ -78,7 +88,7 @@ namespace PhotoAlbumSystem
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Welcome}/{id?}");
             });
         }
     }
