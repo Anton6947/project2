@@ -171,9 +171,19 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
         //  Grant Album Access
-        public IActionResult GiveAlbumAccess()
+        public IActionResult GiveAlbumAccess(string userId)
         {
-            return View();
+            var albumAccess = new AlbumAccessView();
+            albumAccess.User_Id = userId;
+            return View(albumAccess);
+
+        }
+        [HttpPost]
+        public IActionResult GiveAlbumAccess(AlbumAccessView albumAccess)
+        {
+            var album = _getAllServices.GetAlbums().Where(x => x.AlbumName == albumAccess.AlbumName).FirstOrDefault();
+            _addServices.AddAlbumAccess(album.Album_Id, albumAccess.User_Id);
+            return RedirectToAction("Album");
         }
 
         //   Album Update

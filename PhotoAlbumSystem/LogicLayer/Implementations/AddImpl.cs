@@ -67,14 +67,14 @@ namespace LogicLayer.Implementations
             ourDatabase.SaveChanges();
         }
 
-        public void AddAlbumAccess(Guid AlbumAccess_Id, DateTime Date, string User_Id, Guid Album_Id, Guid AccessType_Id)
+        public void AddAlbumAccess(Guid id, string userId)
         {
             var albumAccess = new AlbumAccess()
             {
                 AlbumAccess_Id = Guid.NewGuid(),
-                Date = Date,
-                User_Id = User_Id,
-                Album_Id = Album_Id,
+                Date = DateTime.Now,
+                User_Id = userId,
+                Album_Id = id,
             };
             ourDatabase.Add(albumAccess);
             ourDatabase.SaveChanges();
