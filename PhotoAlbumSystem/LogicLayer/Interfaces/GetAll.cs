@@ -16,5 +16,7 @@ namespace LogicLayer.Interfaces
         IEnumerable<MetaData> GetMetaData();
 
         MetaData GetMetaDataSpecific(Guid Photo_Id);
+
+        string GetUser(string Username);
     }
 }

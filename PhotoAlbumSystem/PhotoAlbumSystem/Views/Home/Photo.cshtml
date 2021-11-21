@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<DataLayer.Entities.Photo>
 
 <p>
-    <a asp-action="PhotoCreate">Create New</a>
+    <a asp-action="PhotoCreate">Create New</a> |
+    <a asp-action="GivePhotoAccess">Share a Photo</a> |
+    <a asp-action="SearchMetaData">Search via tags</a>
 </p>
 <table class="table">
     <thead>
@@ -27,7 +29,6 @@
             <td>
                 <a asp-action="MetaDataView" asp-route-id="@item.Photo_Id">Meta data</a> |
                 <a asp-action="PhotoDelete" asp-route-id="@item.Photo_Id">Delete</a> |
-                <a asp-action="GivePhotoAccess" asp-route-id="@item.Photo_Id">Share</a>
             </td>
         </tr>
 }

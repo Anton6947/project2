@@ -1,20 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Album Page";//Test
-}
+﻿
 @model IEnumerable<DataLayer.Entities.Album>
 
 
 <p>
-    <a asp-action="AlbumCreate">Create New</a>
+    <a asp-action="AlbumCreate">Create New Album</a> | 
+    <a asp-action="GiveAlbumAccess">Share an Album</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AlbumName)
-            </th>
-            <th></th>
-        </tr>
+        Album Name
     </thead>
     <tbody>
         @foreach (var item in Model)
@@ -25,8 +19,7 @@
                 </td>
                 <td>
                     <a asp-action="AlbumUpdate" asp-route-id="@item.Album_Id">Edit</a> |
-                    <a asp-action="AlbumDelete" asp-route-id="@item.Album_Id">Delete</a> |
-                    <a asp-action="GiveAlbumAccess" asp-route-id="@item.Album_Id">Share</a>
+                    <a asp-action="AlbumDelete" asp-route-id="@item.Album_Id">Delete</a> |                   
                 </td>
             </tr>
         }

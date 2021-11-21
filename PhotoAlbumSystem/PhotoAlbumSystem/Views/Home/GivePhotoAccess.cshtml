@@ -1,20 +1,20 @@
 ﻿@model PhotoAccessView
 
-<h4>Enter the user Id of the user you want to share this photo with.</h4>
+<h4>Share Photo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="GivePhotoAccess">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FileName" class="control-label"></label>
+                 Name of the Photo(Include File Extension!)
                 <input asp-for="FileName" class="form-control" />
                 <span asp-validation-for="FileName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="User_Id" class="control-label"></label>
-                <input asp-for="User_Id" class="form-control" />
-                <span asp-validation-for="User_Id" class="text-danger"></span>
+                 User to Share to
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Share" class="btn btn-primary" />
@@ -24,7 +24,7 @@
 </div>
 
 <div>
-    <a asp-action="Photo">Back to List</a>
+    <a asp-action="Photo">Back to Photos</a>
 </div>
 
 @section Scripts {

@@ -47,6 +47,11 @@ namespace LogicLayer.Implementations
 
             return photoAccess;
         }
+        public string GetUser(string Username)
+        {
+            var User = ourDataBase.Users.AsNoTracking().FirstOrDefault(x => x.UserName == Username);
+            return User.Id;
+        }
     }
 }
 

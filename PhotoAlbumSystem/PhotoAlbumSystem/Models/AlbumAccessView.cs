@@ -11,6 +11,7 @@ namespace PhotoAlbumSystem.Models
         public string AlbumName { get; set; }
         public DateTime Date { get; set; }
 
+        public string UserName { get; set; }
         public string User_Id { get; set; }
        
     }

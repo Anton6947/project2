@@ -1,16 +1,13 @@
 ﻿@model DataLayer.Entities.Album
 
 
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AlbumUpdate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Album_Id" />
             <div class="form-group">
-                <dt >
-                    @Html.LabelFor(model => model.AlbumName, "Enter new name for album")
-                </dt>
+                New Album Name
                 <input asp-for="AlbumName" class="form-control" />
                 <span asp-validation-for="AlbumName" class="text-danger"></span>
             </div>

@@ -58,7 +58,16 @@ namespace PhotoAlbumSystem.Controllers
         }
 
         //    Photo Get All
-
+        public IActionResult SearchMetaData()
+        {
+            return View();
+        }
+        public IActionResult TaggedPhotos(MetaData metaData)
+        {
+            var metaDataInput = _getAllServices.GetMetaData().Where(x => x.Tags == metaData.Tags).FirstOrDefault();
+            var photos = _getAllServices.GetPhotos().Where(x => x.Photo_Id == metaDataInput.Photo_Id).FirstOrDefault();
+            return View(photos);
+        }
         public IActionResult Photo(Photo photo)
         {
             var photos = _getAllServices.GetPhotos();
@@ -115,18 +124,19 @@ namespace PhotoAlbumSystem.Controllers
         }
        
         //  Grant Photo Access
-        public IActionResult GivePhotoAccess(string userId)
+        public IActionResult GivePhotoAccess(string username)
         {          
             var photoAccess = new PhotoAccessView();           
-            photoAccess.User_Id = userId;
+            photoAccess.User_Id = username;
             return View(photoAccess);
 
         }
         [HttpPost]
         public IActionResult GivePhotoAccess(PhotoAccessView photoAccess )
         {
+            string userId = _getAllServices.GetUser(photoAccess.UserName);
             var photo = _getAllServices.GetPhotos().Where(x => x.FileName == photoAccess.FileName).FirstOrDefault();
-            _addServices.AddPhotoAccess(photo.Photo_Id, photoAccess.User_Id);
+            _addServices.AddPhotoAccess(photo.Photo_Id, userId);
             return RedirectToAction("Photo");
         }
         //  Photo Delete
@@ -171,18 +181,19 @@ namespace PhotoAlbumSystem.Controllers
             return View();
         }
         //  Grant Album Access
-        public IActionResult GiveAlbumAccess(string userId)
-        {
+        public IActionResult GiveAlbumAccess(string username)
+        {          
             var albumAccess = new AlbumAccessView();
-            albumAccess.User_Id = userId;
+            albumAccess.UserName = username;
             return View(albumAccess);
 
         }
         [HttpPost]
         public IActionResult GiveAlbumAccess(AlbumAccessView albumAccess)
         {
+            string userId = _getAllServices.GetUser(albumAccess.UserName);
             var album = _getAllServices.GetAlbums().Where(x => x.AlbumName == albumAccess.AlbumName).FirstOrDefault();
-            _addServices.AddAlbumAccess(album.Album_Id, albumAccess.User_Id);
+            _addServices.AddAlbumAccess(album.Album_Id, userId);
             return RedirectToAction("Album");
         }
 
