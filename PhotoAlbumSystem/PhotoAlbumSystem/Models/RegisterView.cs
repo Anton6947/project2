@@ -17,7 +17,7 @@ namespace PhotoAlbumSystem.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name ="Cofirm password")]
+        [Display(Name ="Confirm password")]
         [Compare("Password",
                ErrorMessage = "Password and Cofirmation password do not match.")]
         public string ConfirmPassword { get; set; }

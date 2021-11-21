@@ -25,7 +25,7 @@ namespace PhotoAlbumSystem.Controllers
         public async Task<IActionResult> Logout()
         {
             await SignInMgr.SignOutAsync();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("Photo", "home");
 
         }
 
@@ -57,7 +57,7 @@ namespace PhotoAlbumSystem.Controllers
                 if(result.Succeeded)
                 {
                     await SignInMgr.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("Photo", "home");
                 }
 
                 foreach(var error in result.Errors)
@@ -89,7 +89,7 @@ namespace PhotoAlbumSystem.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("Photo", "home");
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
