@@ -15,6 +15,7 @@ namespace PhotoAlbumSystem.Controllers
     {
         private UserManager<IdentityUser> UserMgr { get; }
         private SignInManager<IdentityUser> SignInMgr { get; }
+        public static string userNameToPass = "";
         public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             UserMgr = userManager;
@@ -56,6 +57,7 @@ namespace PhotoAlbumSystem.Controllers
 
                 if(result.Succeeded)
                 {
+                    userNameToPass = user.UserName;
                     await SignInMgr.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Photo", "home");
                 }
@@ -89,6 +91,7 @@ namespace PhotoAlbumSystem.Controllers
 
                 if (result.Succeeded)
                 {
+                    userNameToPass = model.Email;
                     return RedirectToAction("Photo", "home");
                 }
 

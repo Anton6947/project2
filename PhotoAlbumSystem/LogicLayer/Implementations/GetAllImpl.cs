@@ -35,6 +35,16 @@ namespace LogicLayer.Implementations
             var metaData = from o in ourDataBase.MetaDatas select o;
             return metaData.ToList();
         }
+        public IEnumerable<PhotoAccess> GetPhotoAccessors()
+        {
+            var photoAccesses = from o in ourDataBase.PhotoAccessors select o;
+            return photoAccesses.ToList();
+        }
+        public IEnumerable<AlbumAccess> GetAlbumAccessors()
+        {
+            var albumAccesses = from o in ourDataBase.AlbumAccessors select o;
+            return albumAccesses.ToList();
+        }
         public MetaData GetMetaDataSpecific(Guid Photo_Id)
         {
             var metDataRetrieved = ourDataBase.MetaDatas.AsNoTracking().FirstOrDefault(x => x.Photo_Id == Photo_Id);

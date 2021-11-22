@@ -14,7 +14,8 @@ namespace LogicLayer.Interfaces
         IEnumerable<Photo> GetPhotos();
 
         IEnumerable<MetaData> GetMetaData();
-
+        IEnumerable<PhotoAccess> GetPhotoAccessors();
+        IEnumerable<AlbumAccess> GetAlbumAccessors();
         MetaData GetMetaDataSpecific(Guid Photo_Id);
 
         string GetUser(string Username);

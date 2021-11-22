@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using PhotoAlbumSystem.Controllers;
 
 namespace PhotoAlbumSystem.Controllers
 {
@@ -55,25 +56,41 @@ namespace PhotoAlbumSystem.Controllers
         // Get photos via metadata
         public IActionResult TaggedPhotos(string searchString)
         {
+            string username = AccountController.userNameToPass;
+            string user = _getAllServices.GetUser(username);
+            var photoAccessor = _getAllServices.GetPhotoAccessors().Where(x => x.User_Id == user).Select(x => x.Photo_Id);
             var IdList= _getAllServices.GetMetaData().Where(x => x.Tags.Contains(searchString, StringComparison.OrdinalIgnoreCase) || x.GeoLocation.Contains(searchString, StringComparison.OrdinalIgnoreCase)).Select(x => x.Photo_Id);
-            var photos = _getAllServices.GetPhotos().Where(x => IdList.Contains(x.Photo_Id));
+            var photos = _getAllServices.GetPhotos().Where(x => IdList.Contains(x.Photo_Id) & photoAccessor.Contains(x.Photo_Id));
             return View(photos);
         }
         // Get photos inside of an album
         public IActionResult ViewPhotos(Guid? albumId)
         {
-            var photos = _getAllServices.GetPhotos().Where(x => x.Album_Id == albumId) ;
+            string username = AccountController.userNameToPass;
+            string user = _getAllServices.GetUser(username);
+            var photoAccessor = _getAllServices.GetPhotoAccessors().Where(x => x.User_Id == user).Select(x => x.Photo_Id);
+            var photos = _getAllServices.GetPhotos().Where(x => x.Album_Id == albumId & photoAccessor.Contains(x.Photo_Id)) ;
             return View(photos);
         }
         // Get all photos
         public IActionResult Photo(Photo photo)
         {
+            string username = AccountController.userNameToPass;
             var photos = _getAllServices.GetPhotos();
+            if (username != "")
+            {
+                string user = _getAllServices.GetUser(username);
+                var photoAccessor = _getAllServices.GetPhotoAccessors().Where(x => x.User_Id == user).Select(x => x.Photo_Id);
+                photos = _getAllServices.GetPhotos().Where(x => photoAccessor.Contains(x.Photo_Id));
+            }
+            
+
             return View(photos);
         }
         //View metadata for photo
         public IActionResult MetaDataView(Guid id)
         {            
+
             var metaDataInput = _getAllServices.GetMetaDataSpecific(id);
             return View(metaDataInput);
         }
@@ -113,6 +130,8 @@ namespace PhotoAlbumSystem.Controllers
             await blockBlob.UploadFromStreamAsync(file.OpenReadStream());
 
             Guid? albumId = _getAllServices.GetAlbumId(photoView.AlbumName);
+            string username = AccountController.userNameToPass;
+            string user = _getAllServices.GetUser(username);
             var photo = new Photo()
             {
                 Photo_Id = Guid.NewGuid(),
@@ -123,6 +142,7 @@ namespace PhotoAlbumSystem.Controllers
             await _addServices.AddPhoto(photo.Photo_Id, fileName, albumId,Url);
 
             _addServices.AddMetaData(photo.Photo_Id, photoView.GeoLocation, photoView.Tags, photoView.CapturedDate, photoView.CapturedByUser);
+            _addServices.AddPhotoAccess(photo.Photo_Id,user);
 
             return RedirectToAction("Photo");
         }
@@ -171,6 +191,7 @@ namespace PhotoAlbumSystem.Controllers
 
         public IActionResult Album(Album album)
         {
+
             var albums = _getAllServices.GetAlbums();
             return View(albums);
         }
