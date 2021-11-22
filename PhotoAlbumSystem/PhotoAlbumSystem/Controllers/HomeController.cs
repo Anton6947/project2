@@ -45,45 +45,39 @@ namespace PhotoAlbumSystem.Controllers
             _getAllServices = getAllServices;
             _deleteServices = deleteServices;
             _photoUploadServices = photoUploadServices;
-        }
+        }        
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        //    Photo Get All
+        //Search view for metadata
         public IActionResult SearchMetaData()
         {
             return View();
         }
+        // Get photos via metadata
         public IActionResult TaggedPhotos(string searchString)
         {
             var IdList= _getAllServices.GetMetaData().Where(x => x.Tags.Contains(searchString, StringComparison.OrdinalIgnoreCase) || x.GeoLocation.Contains(searchString, StringComparison.OrdinalIgnoreCase)).Select(x => x.Photo_Id);
             var photos = _getAllServices.GetPhotos().Where(x => IdList.Contains(x.Photo_Id));
             return View(photos);
         }
+        // Get photos inside of an album
         public IActionResult ViewPhotos(Guid? albumId)
         {
-            //Guid? albumId = _getAllServices.GetAlbumId(albumName);
             var photos = _getAllServices.GetPhotos().Where(x => x.Album_Id == albumId) ;
             return View(photos);
         }
+        // Get all photos
         public IActionResult Photo(Photo photo)
         {
             var photos = _getAllServices.GetPhotos();
             return View(photos);
         }
+        //View metadata for photo
         public IActionResult MetaDataView(Guid id)
         {            
             var metaDataInput = _getAllServices.GetMetaDataSpecific(id);
             return View(metaDataInput);
         }
+        //Update metadata for photo
         public IActionResult UpdateMetaData(Guid id)
         {            
             var metaData = _getAllServices.GetMetaDataSpecific(id);
